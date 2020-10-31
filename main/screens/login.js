@@ -1,10 +1,17 @@
 import React from "react";
-import { StyleSheet, Text, View, Dimensions, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Icon, Input } from "react-native-elements";
 import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
 const { width, height } = Dimensions.get("window");
-const Login = ({ loginFunc }) => {
+const Login = ({ loginFunc, navigation }) => {
   const [loginInformations, setLoginInformations] = React.useState({
     email: "",
     password: "",
@@ -19,7 +26,14 @@ const Login = ({ loginFunc }) => {
           </View>
           <View style={styles.topBarRight}>
             <Icon name="sc-twitter" type="evilicon" color="#1DA1F2" />
-            <Text style={{ color: "#1DA1F2" }}>Kaydol</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("SignUp");
+              }}
+            >
+              <Text style={{ color: "#1DA1F2" }}>Kaydol</Text>
+            </TouchableOpacity>
+
             <FontAwesome5 name="ellipsis-v" size={24} color="#1DA1F2" />
           </View>
         </View>
