@@ -5,14 +5,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Login from "./main/screens/login";
 import * as firebase from "firebase";
-
+import { firebaseConfig } from "./firebaseConfig";
 const Stack = createStackNavigator();
 
 export default function App() {
   React.useEffect(() => {
-    var firebaseConfig = {
-      //added firebase configure
-    };
     // Initialize Firebase
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
