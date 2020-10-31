@@ -1,11 +1,15 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View, Dimensions, Button } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Icon, Input } from "react-native-elements";
 import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
 const { width, height } = Dimensions.get("window");
-const Login = () => {
+const Login = ({ loginFunc }) => {
+  const [loginInformations, setLoginInformations] = React.useState({
+    email: "",
+    password: "",
+  });
+
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
@@ -33,17 +37,35 @@ const Login = () => {
             style={styles}
             label="Telefon, e-posta ya da kullanıcı adı"
             labelStyle={styles.emailInput}
+            value={loginInformations.email}
+            onChangeText={(value) =>
+              setLoginInformations((prevState) => {
+                return { ...prevState, email: value };
+              })
+            }
           />
           <Input
             rightIcon={{ type: "font-awesome", name: "eye", opacity: 0.5 }}
             style={styles}
             label="Şifre"
             secureTextEntry={true}
+            value={loginInformations.password}
+            onChangeText={(value) =>
+              setLoginInformations((prevState) => {
+                return { ...prevState, password: value };
+              })
+            }
           />
         </View>
       </View>
       <View style={styles.bottomContainer}>
-        <Button title="Giriş Yap" style={styles.buttonS}></Button>
+        <Button
+          title="Giriş Yap"
+          style={styles.buttonS}
+          onPress={() => {
+            loginFunc(loginInformations.email, loginInformations.password);
+          }}
+        ></Button>
       </View>
     </View>
   );
