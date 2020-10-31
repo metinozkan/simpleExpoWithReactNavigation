@@ -36,13 +36,19 @@ export default function App() {
         console.log("Login failed!");
       });
   };
+
+  const signUp = (email, pass) => {
+    firebase.auth().createUserWithEmailAndPassword(email, pass);
+  };
   return (
     <NavigationContainer>
       <Stack.Navigator headerMode="none" initialRouteName="SignUp">
         <Stack.Screen name="Login">
           {(props) => <Login {...props} loginFunc={login} />}
         </Stack.Screen>
-        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="SignUp">
+          {(props) => <SignUp {...props} signUpFunc={signUp}></SignUp>}
+        </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
