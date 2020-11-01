@@ -43,8 +43,20 @@ export default function App() {
       .auth()
       .createUserWithEmailAndPassword(email, pass)
       .then((registeredUser) => {
-        console.log("registeredUser", registeredUser);
+        createUser(registeredUser.user);
+      })
+      .catch((err) => {
+        Alert.alert("Hata", "Kayıt olunamadı, lütfen tekrar deneyiniz", [
+          { text: "Tamam" },
+        ]);
       });
+  };
+
+  const createUser = (user) => {
+    firebase.database().ref("users").child(user.uid).set({
+      email: user.email,
+      custom: "customarea",
+    });
   };
   return (
     <NavigationContainer>
