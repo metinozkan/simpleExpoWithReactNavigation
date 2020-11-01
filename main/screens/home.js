@@ -44,6 +44,32 @@ const Home = ({ navigation }) => {
       }
     });
   }, []);
+  const sendTweet = () => {
+    const timeStamp = new Date().getTime();
+    firebase
+      .database()
+      .ref("tweets")
+      .set([
+        ...tweetArray,
+        {
+          tweet: tweet,
+          timeStamp: timeStamp,
+          user: user,
+        },
+      ])
+      .then((value) => {
+        setTweetArray([
+          ...tweetArray,
+          {
+            tweet: tweet,
+            timeStamp: timeStamp,
+            user: user,
+          },
+        ]);
+        openModal(false);
+        setTweet("");
+      });
+  };
 
   return (
     <View style={styles.container}>
@@ -116,7 +142,7 @@ const Home = ({ navigation }) => {
             <TouchableOpacity
               onPress={() => {
                 setOpenModal(false);
-                // sendTweet();
+                sendTweet();
               }}
             >
               <Text style={{ color: "#1DA1F2" }}>Tweet At</Text>
