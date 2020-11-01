@@ -22,7 +22,14 @@ const Login = ({ loginFunc, navigation }) => {
       <View style={styles.topContainer}>
         <View style={styles.topBar}>
           <View style={styles.topBarLeft}>
-            <AntDesign name="arrowleft" size={24} color="#1DA1F2" />
+            {/* <AntDesign
+              name="arrowleft"
+              size={24}
+              color="#1DA1F2"
+              onPress={() => {
+                navigation.goBack();
+              }}
+            /> */}
           </View>
           <View style={styles.topBarRight}>
             <Icon name="sc-twitter" type="evilicon" color="#1DA1F2" />

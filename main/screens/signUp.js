@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Icon, Input } from "react-native-elements";
 import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
 const { width, height } = Dimensions.get("window");
-const SignUp = ({ signUpFunc }) => {
+const SignUp = ({ signUpFunc, navigation }) => {
   const [signUpInformations, setSignUpInformations] = React.useState({
     password: "",
     email: "",
@@ -14,7 +14,14 @@ const SignUp = ({ signUpFunc }) => {
       <View style={styles.topContainer}>
         <View style={styles.topBar}>
           <View style={styles.topBarLeft}>
-            <AntDesign name="arrowleft" size={24} color="#1DA1F2" />
+            <AntDesign
+              name="arrowleft"
+              size={24}
+              color="#1DA1F2"
+              onPress={() => {
+                navigation.goBack();
+              }}
+            />
           </View>
           <View style={styles.topBarRight}>
             <Icon name="sc-twitter" type="evilicon" color="#1DA1F2" />

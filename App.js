@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Alert } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Login from "./main/screens/login";
@@ -34,6 +34,7 @@ export default function App() {
       })
       .catch(function (error) {
         console.log("Login failed!");
+        Alert.alert("Hata", "Giriş Yapılamadı", [{ text: "Tamam" }]);
       });
   };
 
@@ -47,7 +48,7 @@ export default function App() {
   };
   return (
     <NavigationContainer>
-      <Stack.Navigator headerMode="none" initialRouteName="SignUp">
+      <Stack.Navigator headerMode="none" initialRouteName="Login">
         <Stack.Screen name="Login">
           {(props) => <Login {...props} loginFunc={login} />}
         </Stack.Screen>
