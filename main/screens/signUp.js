@@ -1,17 +1,14 @@
 import React from "react";
 import { StyleSheet, Text, View, Dimensions, Button } from "react-native";
-import DatePicker from "react-native-datepicker";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Icon, Input } from "react-native-elements";
 import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
 const { width, height } = Dimensions.get("window");
 const SignUp = ({ signUpFunc }) => {
   const [signUpInformations, setSignUpInformations] = React.useState({
-    name: "",
+    password: "",
     email: "",
-    date: "",
   });
-
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
@@ -47,17 +44,6 @@ const SignUp = ({ signUpFunc }) => {
           >
             <Input
               style={styles}
-              placeholder="İsim"
-              value={signUpInformations.name}
-              onChangeText={(value) =>
-                setSignUpInformations((prevState) => {
-                  return { ...prevState, name: value };
-                })
-              }
-            />
-            <Input
-              rightIcon={{ type: "font-awesome", name: "eye", opacity: 0.5 }}
-              style={styles}
               placeholder="e-posta"
               value={signUpInformations.email}
               onChangeText={(value) =>
@@ -66,39 +52,17 @@ const SignUp = ({ signUpFunc }) => {
                 })
               }
             />
-            <DatePicker
-              placeholder="Dogum tarihi"
-              style={{ width: width, border: "none" }}
-              date={signUpInformations.date}
-              mode="datetime"
-              placeholder="Dogum tarihi"
-              androidMode="spinner"
-              format="YYYY-MM-DD"
-              minDate="2016-05-01"
-              maxDate="2016-06-01"
-              confirmBtnText="Confirm"
-              cancelBtnText="Cancel"
-              customStyles={{
-                dateIcon: {
-                  display: "none",
-                },
-                dateInput: {
-                  borderBottomColor: "#a0a0a0",
-                  borderColor: "white",
-                  width: width,
-                  marginLeft: 10,
-                  marginRight: 10,
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "flex-start",
-                },
-                // ... You can check the source to find the other keys.
-              }}
-              onDateChange={(date) => {
+            <Input
+              secureTextEntry={true}
+              rightIcon={{ type: "font-awesome", name: "eye", opacity: 0.5 }}
+              style={styles}
+              placeholder="sifre"
+              value={signUpInformations.password}
+              onChangeText={(value) =>
                 setSignUpInformations((prevState) => {
-                  return { ...prevState, date: date };
-                });
-              }}
+                  return { ...prevState, password: value };
+                })
+              }
             />
           </View>
         </View>
@@ -108,7 +72,7 @@ const SignUp = ({ signUpFunc }) => {
           title="Kayıt Ol"
           style={styles.buttonS}
           onPress={() => {
-            signUpFunc(loginInformations.email, loginInformations.password);
+            signUpFunc(signUpInformations.email, signUpInformations.password);
           }}
         ></Button>
       </View>
