@@ -17,6 +17,21 @@ const Login = ({ loginFunc, navigation }) => {
     password: "",
   });
 
+  React.useEffect(() => {
+    // Initialize Firebase
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    // firebase.analytics();
+    firebase.auth().onAuthStateChanged((auth) => {
+      if (auth) {
+        console.log("logged in");
+        navigation.replace("Home");
+      } else {
+        console.log("not logged in");
+      }
+    });
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
