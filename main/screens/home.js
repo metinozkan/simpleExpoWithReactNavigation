@@ -43,6 +43,7 @@ const Home = ({ navigation }) => {
         navigation.replace("Login");
       }
     });
+    getTweets();
   }, []);
   const sendTweet = () => {
     const timeStamp = new Date().getTime();
@@ -68,6 +69,15 @@ const Home = ({ navigation }) => {
         ]);
         openModal(false);
         setTweet("");
+      });
+  };
+
+  const getTweets = () => {
+    firebase
+      .database()
+      .ref("tweets")
+      .once("value", (snap) => {
+        setTweetArray(snap.val());
       });
   };
 
