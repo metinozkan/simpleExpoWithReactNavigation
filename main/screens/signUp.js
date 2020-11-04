@@ -50,7 +50,6 @@ const SignUp = ({ signUpFunc, navigation }) => {
             }}
           >
             <Input
-              style={styles}
               placeholder="e-posta"
               value={signUpInformations.email}
               onChangeText={(value) =>
@@ -62,7 +61,6 @@ const SignUp = ({ signUpFunc, navigation }) => {
             <Input
               secureTextEntry={true}
               rightIcon={{ type: "font-awesome", name: "eye", opacity: 0.5 }}
-              style={styles}
               placeholder="sifre"
               value={signUpInformations.password}
               onChangeText={(value) =>

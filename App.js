@@ -50,6 +50,7 @@ export default function App() {
         createUser(registeredUser.user);
       })
       .catch((err) => {
+        console.log("errrr",err.code,err.message)
         Alert.alert("Hata", "Kayıt olunamadı, lütfen tekrar deneyiniz", [
           { text: "Tamam" },
         ]);

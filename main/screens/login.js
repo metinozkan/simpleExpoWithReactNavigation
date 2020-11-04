@@ -10,6 +10,9 @@ import {
 import { createStackNavigator } from "@react-navigation/stack";
 import { Icon, Input } from "react-native-elements";
 import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
+import { firebaseConfig } from "../../firebaseConfig";
+import * as firebase from "firebase";
+
 const { width, height } = Dimensions.get("window");
 const Login = ({ loginFunc, navigation }) => {
   const [loginInformations, setLoginInformations] = React.useState({
@@ -70,7 +73,6 @@ const Login = ({ loginFunc, navigation }) => {
             Twitter'a giriş yap.
           </Text>
           <Input
-            style={styles}
             label="Telefon, e-posta ya da kullanıcı adı"
             labelStyle={styles.emailInput}
             value={loginInformations.email}
@@ -82,7 +84,6 @@ const Login = ({ loginFunc, navigation }) => {
           />
           <Input
             rightIcon={{ type: "font-awesome", name: "eye", opacity: 0.5 }}
-            style={styles}
             label="Şifre"
             secureTextEntry={true}
             value={loginInformations.password}
